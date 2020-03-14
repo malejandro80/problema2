@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form id="form">
+    <label for="">hora</label>
+    <input type="text" name="dato1" id="">
+    <label for="">agregado</label>
+    <input type="text" name="dato2" id="">
+    <button type="submit"> enviar</button>
+  </form>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js">
+</script>
+<script>
+  $("#form").submit(function (e) {
+    e.preventDefault();
+    let formulario = $('#form').serialize();
+    $.post("http:127.0.0.1:3000/time", formulario, function (data) {
+      alert(JSON.stringify(data));
+      console.log(data);
+    })
+      .fail(function (response) {
+        console.log(response);
+        // alert('Error: ' + response.responseText);
+      });
+    ;
+    // $.ajax('http:127.0.0.1:3000/time',
+    //   {
+    //     dataType: 'json', // type of response data
+    //     success: function (datar) {   // success callback function
+    //       console.log(data);
+    //     },
+    //     error: function (jqXhr, textStatus, errorMessage) { // error callback 
+    //       console.log(jqXhr);
+
+    //     }
+    //   });
+    console.log(formulario);
+  });
+
+</script>
+
+</html>
